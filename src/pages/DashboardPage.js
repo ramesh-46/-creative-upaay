@@ -101,44 +101,7 @@ const DashboardContent = () => {
     </svg>
   );
 
-  const EditIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-    </svg>
-  );
-
-  const ShareIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 12H20M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
-    </svg>
-  );
-
-  const FilterIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M3 9L12 2L21 9V20C21 20.5523 20.7893 21.0523 20.4142 21.4274C20.0391 21.7924 19.5391 22 19 22H5C4.46086 22 3.96086 21.7924 3.58579 21.4274C3.21071 21.0523 3 20.5523 3 20V9Z" />
-      <path d="M9 22V12H15V22" />
-    </svg>
-  );
-
-  const TodayIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <rect x="3" y="4" width="18" height="18" rx="2" />
-      <path d="M16 2V6" />
-      <path d="M8 2V6" />
-      <path d="M3 10H21" />
-      <path d="M12 14V18" />
-    </svg>
-  );
-
-  const MoreIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="12" cy="12" r="3" />
-      <circle cx="19" cy="12" r="3" />
-      <circle cx="5" cy="12" r="3" />
-    </svg>
-  );
-
+  // ✅ Fixed Layout: Use flex with proper spacing
   const sidebarWidth = isMobile ? '200px' : isTablet ? '240px' : '250px';
   const mainContainerStyle = {
     flex: 1,
@@ -147,7 +110,7 @@ const DashboardContent = () => {
     background: '#f5f7fa',
     fontFamily: 'Inter, sans-serif',
     overflow: 'hidden',
-    marginLeft: sidebarWidth,
+    marginLeft: sidebarWidth, // Push content to the right
   };
 
   const contentStyle = {
@@ -186,112 +149,27 @@ const DashboardContent = () => {
       {/* Main Content - Starts after sidebar */}
       <div style={mainContainerStyle}>
         <Header />
-
         <div style={contentStyle}>
           <div style={headerStyle}>
-            {/* Project Name with Edit and Share Icons */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              fontSize: 20,
-              fontWeight: 600,
-              color: '#333',
-            }}>
-              <span>{selectedProject}</span>
-              <button
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 4,
-                  color: '#8E2DE2',
-                }}
-                onClick={() => alert('Edit Project')}
-              >
-                <EditIcon />
-              </button>
-              <button
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 4,
-                  color: '#8E2DE2',
-                }}
-                onClick={() => alert('Share Project')}
-              >
-                <ShareIcon />
-              </button>
-            </div>
-
-            {/* Top Right Controls */}
-            <div style={{
-              display: 'flex',
-              gap: 10,
-              alignItems: 'center',
-            }}>
-              <button
-                style={{
-                  padding: '6px 12px',
-                  border: '1px solid #ccc',
-                  borderRadius: 4,
-                  background: '#fff',
-                  fontSize: 14,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                <FilterIcon /> Filter
-              </button>
-              <button
-                style={{
-                  padding: '6px 12px',
-                  border: '1px solid #ccc',
-                  borderRadius: 4,
-                  background: '#fff',
-                  fontSize: 14,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                <TodayIcon /> Today
-              </button>
-              <button
-                style={{
-                  padding: '6px 12px',
-                  border: '1px solid #ccc',
-                  borderRadius: 4,
-                  background: '#fff',
-                  fontSize: 14,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                <ShareIcon /> Share
-              </button>
-              <button
-                style={{
-                  padding: '6px 12px',
-                  border: '1px solid #ccc',
-                  borderRadius: 4,
-                  background: '#fff',
-                  fontSize: 14,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                <MoreIcon />
-              </button>
-            </div>
+            <h2 style={{ margin: 0 }}>{selectedProject}</h2>
+            <button
+              onClick={() => setShowModal(true)}
+              style={{
+                padding: '8px 16px',
+                background: '#8E2DE2',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 8,
+                cursor: 'pointer',
+                fontSize: 14,
+                fontWeight: 500,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <PlusIcon /> Add Task
+            </button>
           </div>
 
           <div style={columnsContainerStyle}>
